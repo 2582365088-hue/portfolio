@@ -460,6 +460,10 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
 
 @media (max-width:768px) {
   .about-grid { grid-template-columns:1fr; }
+  .about-card { padding:18px; }
+  .about-card h3 { font-size:15px; }
+  .about-tags { gap:8px; }
+  .about-tags span { padding:6px 14px; font-size:11px; }
 }
 
 
@@ -485,6 +489,9 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
 
 @media (max-width:768px) {
   .projects-grid { grid-template-columns:1fr; }
+  .project-card { padding:18px; }
+  .project-card h4 { font-size:14px; }
+  .project-card p { font-size:11px; }
 }
 
 
@@ -512,8 +519,17 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
 @media (max-width:768px) {
   .awards-grid { grid-template-columns:repeat(2,1fr); }
   .award-card.col-span-2 { grid-column:span 1; }
+  .award-card { padding:16px; }
+  .award-card h4 { font-size:13px; }
+  .award-icon { font-size:22px; }
 }
-@media (max-width:480px) { .awards-grid { grid-template-columns:1fr; } }
+@media (max-width:480px) {
+  .awards-grid { grid-template-columns:1fr; }
+  .section-title { font-size:32px; }
+  .works-filters { gap:6px; }
+  .works-filters button { padding:8px 14px; font-size:11px; }
+  .contact p { font-size:11px; }
+}
 
 /* ============ CONTACT ============ */
 .contact {
@@ -635,10 +651,25 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
   .hero-desc { font-size:14px; margin-bottom:36px; }
   .hero-meta { gap:6px; }
   .hero-meta span { padding:8px 14px; font-size:10px; }
+  .hero-resume-btn { padding:10px 24px; font-size:12px; }
+  .hero-scroll span { font-size:10px; letter-spacing:.14em; }
   .aurora-blob.a1 { width:80vw; height:80vw; }
   .aurora-blob.a2 { width:70vw; height:70vw; }
   .aurora-blob.a3 { width:75vw; height:75vw; }
   .aurora-blob.a4 { width:60vw; height:60vw; }
+  /* Contact */
+  .contact-inner { padding:0 24px; }
+  .contact-links { gap:8px; }
+  .contact-btn { padding:6px 16px; font-size:11px; }
+  /* Modal */
+  .modal-box { padding:28px 20px; margin:0 12px; }
+  .modal-box h3 { font-size:20px; }
+  .modal-box .m-desc { font-size:13px; line-height:1.7; }
+  .modal-box .m-link { padding:10px 22px; font-size:13px; }
+  /* Contact modal */
+  .contact-modal-box { max-width:320px; padding:28px 20px 24px; }
+  .contact-modal-id { font-size:22px; padding:12px 16px; }
+  .contact-modal-copy { padding:8px 22px; font-size:13px; }
 }
 </style>
 </head>
@@ -696,7 +727,7 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
     </a>
   </div>
   <div class="hero-scroll">
-    <span>Scroll</span>
+    <span>下滑查看更多</span>
     <div class="scroll-line"></div>
   </div>
 </section>
@@ -842,13 +873,12 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
 /* ============ DATA ============ */
 const works = [
   // ── 推送推文 ──
-  { cat:'push', title:'那些小时候以为"天塌了"的事……', tag:'推送推文', img:'img/那些小时候以为"天塌了"的事，长大后发现…….png', url:'https://mp.weixin.qq.com/s/0YzNWuqqPe6z2SIiAqBa8Q', desc:'以童年视角切入，通过温情叙事和趣味道梗，对比小时候的"世界末日"与长大后的释然。长图文+互动投票形式，阅读量迅速突破10w+。', featured:true },
+  { cat:'push', title:'那些小时候以为"天塌了"的事……', tag:'推送推文', img:'img/那些小时候以为天塌了的事.png', url:'https://mp.weixin.qq.com/s/0YzNWuqqPe6z2SIiAqBa8Q', desc:'以童年视角切入，通过温情叙事和趣味道梗，对比小时候的"世界末日"与长大后的释然。长图文+互动投票形式，阅读量迅速突破10w+。', featured:true },
   { cat:'push', title:'2025，"枫"华正茂的中南与你相遇', tag:'推送推文', img:'img/2025，枫华正茂的中南与你相遇.png', url:'https://mp.weixin.qq.com/s/bxmtTUyxcr8SjCYdVI-L4g', desc:'新生季主题推文，以中南大学标志性红枫为视觉主线。运用SVG交互实现枫叶飘落动画+点击展开校园寄语。', featured:true },
   { cat:'push', title:'今天，一起赏月吧！', tag:'推送推文', img:'img/今天，一起赏月吧！.png', url:'https://mp.weixin.qq.com/s/xp2ByvkRdtByTIXUKVcgTA', desc:'中秋特别策划，以"云端赏月"为概念。横屏长卷SVG模拟校园沉浸体验，获教育部网络文化节一等奖。', featured:true },
   { cat:'push', title:'"卖"掉长沙雨，"买"到中南花', tag:'推送推文', img:'img/卖掉长沙雨，买到中南花.png', url:'https://mp.weixin.qq.com/s/dPKlr1lAOnIQOpR__c4Pnw', desc:'春季创意推文，将长沙雨季与校园花开进行"交易"比喻。插画风格+动态雨滴效果，嵌入互动小游戏。' },
   { cat:'push', title:'草地"樱"乐会 · 中南25年与歌声同行', tag:'推送推文', img:'img/草地樱乐会 · 中南25年与歌声同行.png', url:'https://mp.weixin.qq.com/s/LrCfsrp2veM_tNKKnLjzyA', desc:'草地音乐节活动预告邀请函，采用交互式SVG实现"照明寻路"式探索体验。' },
   { cat:'push', title:'七夕特别策划', tag:'推送推文', img:'img/七夕特别策划.png', desc:'七夕主题推送策划，融合传统文化与现代表达，以创意排版呈现中式浪漫意境。', media:'pdf', file:'file/七夕.pdf' },
-  { cat:'push', title:'推送制作展示合集', tag:'推送推文', img:'', desc:'多篇原创推送制作展示合集，包含各类主题策划与SVG排版设计。', media:'pdf', file:'file/部分推送制作展示链接.pdf' },
 
   // ── 视频作品 ──
   { cat:'video', title:'AI视频作品', tag:'视频作品', img:'img/AI视频.png', desc:'运用AI技术创作的创意视频作品，展示AI在视频制作与创意表达领域的应用实践。', media:'video', file:'file/AI视频作品.mp4' },
@@ -961,6 +991,18 @@ filterBar.innerHTML = filters.map(f =>
 
 let currentFilter = 'all';
 let currentLayout = 'stack';
+const isMobile = window.matchMedia('(max-width:900px)').matches;
+
+/* ============ WORKS ORDER HELPER ============ */
+function getOrderedWorks(filter) {
+  const list = filter === 'all' ? [...works] : works.filter(w => w.cat === filter);
+  if (isMobile) {
+    // On mobile: video + web first, then push, then design
+    const catOrder = { video: 0, web: 1, push: 2, design: 3, svg: 4 };
+    list.sort((a, b) => (catOrder[a.cat] ?? 9) - (catOrder[b.cat] ?? 9));
+  }
+  return list;
+}
 
 /* ============ CARD HTML HELPER ============ */
 function cardHTML(w) {
@@ -985,7 +1027,7 @@ function cardHTML(w) {
 
 /* ============ RENDER STACK ============ */
 function renderStack(filter='all') {
-  const list = filter==='all' ? works : works.filter(w=>w.cat===filter);
+  const list = getOrderedWorks(filter);
   const container = document.getElementById('stackContainer');
   const offsetX = 72;
   const n = list.length;
@@ -1013,7 +1055,7 @@ function renderStack(filter='all') {
 
 /* ============ RENDER GRID ============ */
 function renderGrid(filter='all') {
-  const list = filter==='all' ? works : works.filter(w=>w.cat===filter);
+  const list = getOrderedWorks(filter);
   const container = document.getElementById('gridContainer');
 
   container.innerHTML = list.map(w => {
@@ -1144,12 +1186,21 @@ document.getElementById('stackContainer').addEventListener('click', handleCardCl
 document.getElementById('gridContainer').addEventListener('click', handleCardClick);
 
 /* ============ INITIAL RENDER ============ */
-renderStack();
+if (isMobile) {
+  currentLayout = 'grid';
+  document.querySelectorAll('#layoutToggle button').forEach(b => b.classList.remove('active'));
+  document.querySelector('#layoutToggle button[data-layout="grid"]').classList.add('active');
+  document.getElementById('stackContainer').style.display = 'none';
+  document.getElementById('gridContainer').style.display = 'grid';
+  renderGrid(currentFilter);
+} else {
+  renderStack();
+}
 
 /* ============ MODAL ============ */
 function openModal(w) {
   document.getElementById('mTitle').textContent = w.title;
-  document.getElementById('mCat').textContent = w.tag + ' · 2024';
+  document.getElementById('mCat').textContent = w.tag;
   document.getElementById('mDesc').textContent = w.desc || '';
   const link = document.getElementById('mLink');
   const cc = catColors[w.cat];
